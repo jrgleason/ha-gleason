@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ha-deployment
+  labels:
+    app: ha
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ha
+  template:
+    metadata:
+      labels:
+        app: ha
+    spec:
+      containers:
+        - name: ha
+          image: homeassistant/raspberrypi4-homeassistant:stable
+          ports:
+            - containerPort: 8123
